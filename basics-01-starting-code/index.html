@@ -20,7 +20,7 @@
     <h2>My Course Goal</h2>
     <p>{{courseGoal}}</p>
     <p>{{outputGoal()}}</p>
-    <p>{{outputGoalAorB()}}</p>
+    <p v-html="outputGoalAorB()"></p>
     <p>Learn more about <a v-bind:href="vueLink" >Vue</a></p>
 </section>
 </body>
