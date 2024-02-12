@@ -17,6 +17,14 @@ const app = Vue.createApp({
 
 app.mount('#app');
 
+const app2 = Vue.createApp({
+  data(){
+    return{
+      favouriteMeal: 'pizza'
+    };
+  }
+});
+app2.mount('#app2');
 ////////////
 /*
 //js by default is not reactive
