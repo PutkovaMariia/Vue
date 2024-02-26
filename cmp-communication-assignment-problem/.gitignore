@@ -24,3 +24,4 @@ pnpm-debug.log*
 HOW-TO-USE.pdf
 .eslintrc.js
 babel.config.js
+public
