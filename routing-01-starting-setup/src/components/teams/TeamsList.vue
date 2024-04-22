@@ -1,4 +1,7 @@
 <template>
+  <router-view></router-view>
+  <!--we add this router because we have nested routs inside TeamsList
+   component and them can not be used from main.js -->
   <ul>
     <teams-item
       v-for="team in teams"

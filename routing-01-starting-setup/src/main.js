@@ -14,9 +14,15 @@ const router = createRouter({
         // redirect to (with redirect the url is changed,
         // in alias url is the same)
         //{path: '/teams', component: TeamsList, alias: '/'}, //our-domain.com/teams => TeamsList
-        {path: '/teams', component: TeamsList}, //our-domain.com/teams => TeamsList
+        {
+            path: '/teams',
+            component: TeamsList,
+            children: [
+                {path: ':teamId', component: TeamMembers, props: true}, // /teams/t1
+
+            ]
+        }, //our-domain.com/teams => TeamsList
         {path: '/users', component: UsersList}, //our-domain.com/users => UsersList
-        {path: '/teams/:teamId', component: TeamMembers, props: true},
         //if no of this routes handling users input we can
         // set our reserved page or any another component that we want
         {path: '/:notFound(.*)', redirect: '/teams'},
