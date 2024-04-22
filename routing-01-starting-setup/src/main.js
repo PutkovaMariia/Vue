@@ -15,10 +15,11 @@ const router = createRouter({
         // in alias url is the same)
         //{path: '/teams', component: TeamsList, alias: '/'}, //our-domain.com/teams => TeamsList
         {
+            name: 'teams',
             path: '/teams',
             component: TeamsList,
             children: [
-                {path: ':teamId', component: TeamMembers, props: true}, // /teams/t1
+                {name: 'team-members', path: ':teamId', component: TeamMembers, props: true}, // /teams/t1
 
             ]
         }, //our-domain.com/teams => TeamsList

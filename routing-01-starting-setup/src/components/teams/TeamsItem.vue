@@ -11,7 +11,12 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed:{
     teamMembersLink(){
-      return '/teams/' + this.id;
+      //return '/teams/' + this.id;
+      //we can pass object with routes in case our app is enormous
+      //plus navigating by name is better than by path because if
+      // in some point we want to change the path, we need to change
+      // it only in one place
+      return{ name: 'team-members', params: {teamId: this.id} };
     }
   }
 };
