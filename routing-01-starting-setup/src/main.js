@@ -36,8 +36,8 @@ const router = createRouter({
         {path: '/:notFound(.*)', redirect: '/teams'},
     ],
     linkActiveClass: 'active',
-    scrollBehavior(to, from, savedPosition) {
-        console.log(to, from, savedPosition);
+    scrollBehavior(_, _2, savedPosition) {
+        //console.log(to, from, savedPosition);
         if (savedPosition){
             return savedPosition;
         }
@@ -46,6 +46,19 @@ const router = createRouter({
             top: 0
         };
     }
+});
+
+router.beforeEach(function(to, from, next){
+    console.log('global before each');
+    console.log(to, from);
+    next();//we allow to go to the next page, in case next(false) we reject
+
+    //for example, we can redirect user to needed page like =>
+    // if (to.name === 'team-members'){
+    //     next();
+    // } else{
+    //     next({name: 'team-members', params: {teamId: 't2'}});
+    // }
 });
 
 const app = createApp(App);
