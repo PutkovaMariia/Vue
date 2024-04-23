@@ -19,6 +19,11 @@ export default {
       //in the end we want to navigate to another page
       this.$router.push('/teams');
     }
+  },
+  beforeRouteEnter(to, from, next){
+    console.log('UsersList component cmp beforeRouteEnter');
+    console.log(to, from);
+    next();
   }
 };
 </script>

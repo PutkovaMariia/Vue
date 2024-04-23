@@ -29,6 +29,11 @@ const router = createRouter({
             path: '/users', components: {
                 default: UsersList,
                 footer: UsersFooter
+            },
+            beforeEnter(to, from, next){
+                console.log('users beforeEnter');
+                console.log(to, from);
+                next();
             }
         }, //our-domain.com/users => UsersList
         //if no of this routes handling users input we can
@@ -59,6 +64,12 @@ router.beforeEach(function(to, from, next){
     // } else{
     //     next({name: 'team-members', params: {teamId: 't2'}});
     // }
+});
+
+router.afterEach(function (to, from){
+    //sending analytics data to us for example
+    console.log('global afterEach');
+    console.log(to,from);
 });
 
 const app = createApp(App);
