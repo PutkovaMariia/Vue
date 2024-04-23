@@ -35,7 +35,17 @@ const router = createRouter({
         // set our reserved page or any another component that we want
         {path: '/:notFound(.*)', redirect: '/teams'},
     ],
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    scrollBehavior(to, from, savedPosition) {
+        console.log(to, from, savedPosition);
+        if (savedPosition){
+            return savedPosition;
+        }
+        return {
+            left: 0,
+            top: 0
+        };
+    }
 });
 
 const app = createApp(App);
