@@ -5,17 +5,24 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
+    <transition
+        name="para"
+        @before-enter="beforeEnter"
+        @before-leave="beforeLeave"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @leave="leave"
+        @after-leave="afterLeave">
       <p v-if="paraIsVisible">this is only sometimes visible...</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
   <div class="container">
-<!--we can add transition on multiple elements if we guarantee-->
-<!--that one of the elements would be added to DOM-->
-<!--in the example we have to buttons and-->
-<!--one of them will be visible always and
-the guarantee is if/else but not if/if-->
+    <!--we can add transition on multiple elements if we guarantee-->
+    <!--that one of the elements would be added to DOM-->
+    <!--in the example we have to buttons and-->
+    <!--one of them will be visible always and
+    the guarantee is if/else but not if/if-->
     <transition name="fade-button" mode="out-in">
       <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
       <button @click="hideUsers" v-else>Hide users</button>
@@ -58,6 +65,24 @@ export default {
     },
     hideUsers() {
       this.usersAreVisible = false;
+    },
+    beforeEnter(el) {
+      console.log('beforeEnter', el);
+    },
+    beforeLeave(el) {
+      console.log('beforeLeave', el);
+    },
+    enter() {
+      console.log('enter');
+    },
+    afterEnter() {
+      console.log('afterEnter');
+    },
+    leave(){
+      console.log('leave');
+    },
+    afterLeave() {
+      console.log('afterLeave');
     }
   },
 };
@@ -118,24 +143,24 @@ button:active {
   animation: slide-scale 0.3s ease-out forwards;
 }
 
-.v-enter-active {
+.para-enter-active {
   animation: slide-scale 0.3s ease-out;
 }
 
-.v-leave-active {
-  animation: all 0.3s ease-in;
-}
 
 .fade-button-enter-from,
 .fade-button-leave-to {
   opacity: 0;
 }
-.fade-button-enter-active{
+
+.fade-button-enter-active {
   transition: opacity 0.3s ease-out;
 }
-.fade-button-leave-active{
+
+.fade-button-leave-active {
   transition: opacity 0.3s ease-in;
 }
+
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
