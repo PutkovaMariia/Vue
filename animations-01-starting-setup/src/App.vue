@@ -10,6 +10,17 @@
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
+  <div class="container">
+<!--we can add transition on multiple elements if we guarantee-->
+<!--that one of the elements would be added to DOM-->
+<!--in the example we have to buttons and-->
+<!--one of them will be visible always and
+the guarantee is if/else but not if/if-->
+    <transition name="fade-button" mode="out-in">
+      <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
+      <button @click="hideUsers" v-else>Hide users</button>
+    </transition>
+  </div>
   <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -26,6 +37,7 @@ export default {
       animatedBlock: false,
       dialogIsVisible: false,
       paraIsVisible: false,
+      usersAreVisible: false,
     };
   },
   methods: {
@@ -40,6 +52,12 @@ export default {
     },
     toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
+    },
+    showUsers() {
+      this.usersAreVisible = true;
+    },
+    hideUsers() {
+      this.usersAreVisible = false;
     }
   },
 };
@@ -106,6 +124,21 @@ button:active {
 
 .v-leave-active {
   animation: all 0.3s ease-in;
+}
+
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+.fade-button-enter-active{
+  transition: opacity 0.3s ease-out;
+}
+.fade-button-leave-active{
+  transition: opacity 0.3s ease-in;
+}
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
 }
 
 @keyframes slide-scale {
