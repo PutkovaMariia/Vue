@@ -1,45 +1,13 @@
 <template>
-  <div class="container">
-    <!--when animatedBlock is true we will add class animate-->
-    <div class="block" :class="{animate: animatedBlock}"></div>
-    <button @click="animateBlock">Animate</button>
-  </div>
-  <div class="container">
-    <transition
-        :css="false"
-        @before-enter="beforeEnter"
-        @before-leave="beforeLeave"
-        @enter="enter"
-        @after-enter="afterEnter"
-        @leave="leave"
-        @after-leave="afterLeave"
-        @enter-cancelled="enterCancelled"
-        @leave-cancelled="leaveCancelled">
-      <p v-if="paraIsVisible">this is only sometimes visible...</p>
-    </transition>
-    <button @click="toggleParagraph">Toggle Paragraph</button>
-  </div>
-  <div class="container">
-    <!--we can add transition on multiple elements if we guarantee-->
-    <!--that one of the elements would be added to DOM-->
-    <!--in the example we have to buttons and-->
-    <!--one of them will be visible always and
-    the guarantee is if/else but not if/if-->
+  <router-view v-slot="slotProps">
     <transition name="fade-button" mode="out-in">
-      <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
-      <button @click="hideUsers" v-else>Hide users</button>
+    <component :is="slotProps.Component"></component>
     </transition>
-  </div>
-  <base-modal @close="hideDialog" :open="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  </router-view>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -189,6 +157,20 @@ button:active {
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
+}
+
+.route-enter-from {
+}
+
+.route-enter-active {
+  animation: slide-scale 0.3s ease-out;
+}
+
+.route-leave-active {
+  animation: slide-scale 0.3s ease-in;
+}
+
+.route-enter-to {
 }
 
 @keyframes slide-scale {
