@@ -2,14 +2,15 @@
 export default {
   computed:{
     counter(){
-      return this.$store.getters.finalCounter;
+      return this.$store.getters.normalizedCounter;
     }
   },
 }
 </script>
 
 <template>
-<h3>{{counter}} counter</h3>
+  <h3>{{counter}} fav</h3>
+  <p>We do more...</p>
 </template>
 
 <style scoped>
