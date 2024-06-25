@@ -1,11 +1,9 @@
 <script>
-export default {
-  name: 'ContactCoach'
-};
+
 </script>
 
 <template>
-
+CONTACT COACH
 </template>
 
 <style scoped>

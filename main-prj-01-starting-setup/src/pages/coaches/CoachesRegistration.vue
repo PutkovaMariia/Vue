@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-
+REGISTER
 </template>
 
 <style scoped>
