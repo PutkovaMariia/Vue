@@ -1,7 +1,5 @@
 <script>
-export default {
-  name: 'RequestsReceived'
-};
+
 </script>
 
 <template>
