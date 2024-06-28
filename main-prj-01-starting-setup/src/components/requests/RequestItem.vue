@@ -1,14 +1,3 @@
-<script>
-export default {
-  props:['email', 'message'],
-  computed:{
-    emailLink(){
-      return 'mailto:' + this.email
-    }
-  }
-};
-</script>
-
 <template>
   <li>
     <div>
@@ -17,6 +6,17 @@ export default {
     <p>{{ message }}</p>
   </li>
 </template>
+
+<script>
+export default {
+  props: ['email', 'message'],
+  computed: {
+    emailLink() {
+      return 'mailto:' + this.email;
+    }
+  }
+}
+</script>
 
 <style scoped>
 li {

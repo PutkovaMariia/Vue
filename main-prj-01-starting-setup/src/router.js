@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import CoachesDetail from '@/pages/coaches/CoachesDetail.vue';
-import CoachesList from '@/pages/coaches/CoachesList.vue';
-import CoachesRegistration from '@/pages/coaches/CoachesRegistration.vue';
-import ContactCoach from '@/pages/requests/ContactCoach.vue';
-import RequestsReceived from '@/pages/requests/RequestsReceived.vue';
-import NotFound from '@/pages/NotFound.vue';
+
+import CoachDetail from './pages/coaches/CoachDetail.vue';
+import CoachesList from './pages/coaches/CoachesList.vue';
+import CoachRegistation from './pages/coaches/CoachRegistration.vue';
+import ContactCoach from './pages/requests/ContactCoach.vue';
+import RequestsReceived from './pages/requests/RequestsReceived.vue';
+import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,15 +13,16 @@ const router = createRouter({
     { path: '/', redirect: '/coaches' },
     { path: '/coaches', component: CoachesList },
     {
-      path: '/coaches/:id', component: CoachesDetail,
+      path: '/coaches/:id',
+      component: CoachDetail,
       props: true,
       children: [
-        { path: '/contact', component: ContactCoach }//coaches/c1/contact
+        { path: 'contact', component: ContactCoach } // /coaches/c1/contact
       ]
     },
-    { path: '/register', component: CoachesRegistration },
+    { path: '/register', component: CoachRegistation },
     { path: '/requests', component: RequestsReceived },
-    { path: '/:notFound(.*)', component: NotFound }//no mater what was passed to the url except our routes we will show not found page
+    { path: '/:notFound(.*)', component: NotFound }
   ]
 });
 

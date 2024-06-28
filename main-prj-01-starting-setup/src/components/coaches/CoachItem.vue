@@ -1,35 +1,9 @@
-<script>
-import BaseButton from '@/components/ui/BaseButton.vue';
-import BaseBadge from '@/components/ui/BaseBadge.vue';
-
-export default {
-  components: { BaseBadge, BaseButton },
-  props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
-  computed: {
-    fullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
-    coachContactLink() {
-      return this.$route.path + '/' + this.id + '/contact';
-    },
-    coachDetailsLink() {
-      return this.$route.path + '/' + this.id;
-    }
-  }
-};
-</script>
-
 <template>
   <li>
     <h3>{{ fullName }}</h3>
     <h4>${{ rate }}/hour</h4>
     <div>
-      <base-badge
-        v-for="area in areas"
-        :key="area"
-        :type="area"
-        :title="area">
-      </base-badge>
+      <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
     </div>
     <div class="actions">
       <base-button mode="outline" link :to="coachContactLink">Contact</base-button>
@@ -37,6 +11,23 @@ export default {
     </div>
   </li>
 </template>
+
+<script>
+export default {
+  props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    coachContactLink() {
+      return this.$route.path + '/' + this.id + '/contact'; // /coaches/c1/contact
+    },
+    coachDetailsLink() {
+      return this.$route.path + '/' + this.id; // /coaches/c1
+    },
+  },
+};
+</script>
 
 <style scoped>
 li {
