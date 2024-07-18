@@ -1,17 +1,42 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <h2>{{ fullName }}</h2>
+    <h3>{{ age }}</h3>
+    <button @click="setNewAge">Change age</button>
+    <div>
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" />
+    </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
-const userName = ref('Mariia');
+// const userName = ref('Mariia');
+const age = ref(30);
+// const user = ref({
+//   name: 'Mariia',
+//   age: 30
+// });
+const firstName = ref('');
+const lastName = ref('');
 
-setTimeout(function() {
-  userName.value = 'Masha';
-}, 2000);
+const fullName = computed(()=> firstName.value + ' ' + lastName.value);
+
+watch([age, fullName], function(newVals, oldVals){
+  console.log('newVals age ' + newVals[0]);
+  console.log('oldVals age ' + oldVals[0]);
+})
+
+// setTimeout(function() {
+//   user.value.name = 'Masha';
+//   user.value.age = 31;
+// }, 2000);
+
+function setNewAge(){
+  age.value = 31;
+}
 </script>
 
 <style>
